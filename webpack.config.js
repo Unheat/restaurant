@@ -22,7 +22,23 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.module\.css$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                namedExport: false,  
+          
+              }
+            }
+          }
+        ]
+      },
+      {
         test: /\.css$/i,
+        exclude: /\.module\.css$/i, // ⬅️ Prevent conflict with modules
         use: ["style-loader", "css-loader"],
       },
       {
