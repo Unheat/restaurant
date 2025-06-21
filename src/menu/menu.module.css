@@ -1,6 +1,6 @@
 .menuImage {
-  height: 200px;
-  width: 200px;
+  height: clamp(200px, 40vw, 400px);
+  width: clamp(200px, 40vw, 400px);
   object-fit: cover; /* crop/scale while preserving aspect ratio */
   border-radius: 8px;
   margin: 8px;

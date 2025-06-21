@@ -2,22 +2,23 @@ import styles from "./menu.module.css" ;
 console.log('test:',styles);
 
 export default function loadMenu() {
-  
   const container = document.querySelector('#content');
   const menu_button = document.querySelector("#menu-tab");
   const popup = document.createElement("div");
 
-  const wrapper = document.createElement("div");
-  wrapper.appendChild(menu_button);
-  wrapper.appendChild(popup);
+  // Create and style your popup
+  popup.style.position = 'absolute';
+  popup.style.backgroundColor = '#fff';
+  popup.style.border = '1px solid #ccc';
+  popup.style.padding = '10px';
+  popup.style.zIndex = '999'; // Make sure it stays on top
 
+  // Add images to popup
   const createImage = (src, alt) => {
     const img = document.createElement('img');
     img.src = src;
     img.alt = alt;
-    console.log('styles:', styles);
-
-    img.className = styles.menuImage; // ← Apply CSS Module class here
+    img.className = styles.menuImage;
     return img;
   };
 
@@ -25,15 +26,12 @@ export default function loadMenu() {
   popup.appendChild(createImage("https://hanoicomputercdn.com/media/product/91282_vga_gigabyte_rtx_5060_windforce_8gd_gddr7__1_.png", "RTX 5060"));
   popup.appendChild(createImage("https://product.hstatic.net/1000233206/product/1024_4dcfd38f96624982a14d80070f230a2b.png", "RTX 5060ti"));
 
-  container.appendChild(wrapper);
+  // Position popup relative to the button
+  const rect = menu_button.getBoundingClientRect();
 
-  // styling container
-  popup.style.position = 'absolute';
-  wrapper.style.position = 'relative';
-  popup.style.top = "100%";
-  wrapper.style.height = "50vw";
-  wrapper.style.width = "clamp(100px, 50vw, 1000px)";
-  container.className = "";
+  popup.style.left = `${rect.left + window.scrollX}px`;
+  popup.style.top = `${rect.bottom + window.scrollY}px`;
 
-
+  // Append to body or container
+  container.appendChild(popup);
 }

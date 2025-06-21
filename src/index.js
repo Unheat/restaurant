@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const contact = document.getElementById('contact-tab');
 
   function clearContent() {
-    const content = document.getElementById('content');
+    const content = document.body.querySelector('#content');
     content.innerHTML = '';
   }
 
